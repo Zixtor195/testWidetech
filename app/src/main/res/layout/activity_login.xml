@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".LoginActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/ToolbarLogin"
+        android:layout_width="0pt"
+        android:layout_height="0pt"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTopLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="10pt"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvLogin"
+        android:layout_width="0pt"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        app:cardCornerRadius="17pt"
+        app:cardElevation="4pt"
+        app:cardBackgroundColor="@color/design_default_color_on_primary"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottomLogin"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRightLogin"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeftLogin"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineTopLogin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10pt"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/userEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10pt"
+                android:layout_marginEnd="10pt"
+                android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+                android:drawablePadding="5pt"
+                android:hint="USUARIO"
+                android:inputType="text"
+                android:padding="10pt"
+                android:textColorHint="#606060"
+                android:textSize="6pt" />
+
+            <EditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10pt"
+                android:layout_marginEnd="10pt"
+                android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                android:drawablePadding="5pt"
+                android:hint="CONTRASEÑA"
+                android:inputType="textPassword"
+                android:padding="10pt"
+                android:textColorHint="#606060"
+                android:textSize="6pt" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2pt"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/loginButton"
+                    android:layout_width="45pt"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2pt"
+                    android:background="@drawable/button_background"
+                    android:elevation="6pt"
+                    android:text="Acceder"
+                    android:textSize="6pt" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/signUpButton"
+                    android:layout_width="45pt"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2pt"
+                    android:background="@drawable/button_background"
+                    android:elevation="6pt"
+                    android:text="Registrar"
+                    android:textSize="6pt" />
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLoginSocialMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5pt"
+                android:text="O Ingresa Con Redes Sociales"
+                android:textAlignment="center"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="6pt"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20pt"
+                android:layout_marginTop="2pt"
+                android:layout_marginEnd="20pt"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/googleSignInButton"
+                    android:layout_width="20pt"
+                    android:layout_height="20pt"
+                    android:background="@drawable/googleg_standard_color_18"
+                    android:elevation="5pt"
+                    android:padding="2pt" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeftLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRightLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottomLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

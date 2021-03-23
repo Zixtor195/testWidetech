@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "42129448932",
+    "project_id": "test-widetech",
+    "storage_bucket": "test-widetech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42129448932:android:6db6f7ff4da30dc21f31f1",
+        "android_client_info": {
+          "package_name": "com.example.testwidetech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42129448932-0sc3j5p9jiuemq64drv155r8gkq6ij8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.testwidetech",
+            "certificate_hash": "f9537c2d61ecf797cec4cf959a90eac27ef66573"
+          }
+        },
+        {
+          "client_id": "42129448932-baql4t4kjev5u9866tofgbpcfg2phtt2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkAPwOXNRz2laFLwjY_gEoTJ9sFT5wcvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42129448932-baql4t4kjev5u9866tofgbpcfg2phtt2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
