@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -15,7 +14,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.room.Room
 import com.example.testwidetech.databinding.ActivityProfileBinding
+import com.example.testwidetech.db.DataBaseRoom
+import com.example.testwidetech.db.UserInfoDB
+import com.example.testwidetech.rest.APIservice
+import com.example.testwidetech.rest.UserInfo
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 enum class ProviderType{
     BASIC,
@@ -23,6 +31,7 @@ enum class ProviderType{
 }
 
 class ProfileActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityProfileBinding
     private lateinit var imageUri : Uri
     private val GET_IMAGE_GALERY = 1
@@ -36,6 +45,8 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val app = Room.databaseBuilder(this, DataBaseRoom::class.java, "database-room").build()
 
         imageUri = ImageController.getImageUri(this, 10)
         binding.imageProfileImageView.setImageURI(imageUri)
@@ -52,6 +63,12 @@ class ProfileActivity : AppCompatActivity() {
         preferences?.putString("email", email)
         preferences?.putString("provider", provider)
         preferences?.apply()
+        doAsync {
+            if (email != null && provider != null) {
+                addUserRest(email, provider)
+                app.DaoRoom().addUser(UserInfoDB(email, provider))
+            }
+        }
 
         binding.productsButton.setOnClickListener {
             val profileIntent: Intent = Intent(this, OurProductsActivity::class.java)
@@ -118,6 +135,28 @@ class ProfileActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(applicationContext,"Debes Aceptar los Permisos para Usar esta Funcion ", Toast.LENGTH_SHORT).show()
             } else -> {
+            }
+        }
+    }
+
+    private fun getRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("http://ws4.shareservice.co/TestMobile/rest/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    private fun addUserRest(email:String, provider:String) {
+        doAsync {
+            var userInfo = UserInfo(email, provider)
+            val call =
+                getRetrofit().create(APIservice::class.java).addUser("Login", userInfo).execute()
+            val products = call.body() as String
+            uiThread {
+                if (!call.isSuccessful) {
+                    Toast.makeText(applicationContext, "Ha Ocurrido un Error ", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
     }

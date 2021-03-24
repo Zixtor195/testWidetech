@@ -1,12 +1,11 @@
 package com.example.testwidetech
 
-import android.R.string
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Looper
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,9 @@ import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.FileWriter
 
 
 class ContactActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -36,7 +37,7 @@ class ContactActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
         setupListeners()
-        File(applicationContext.getFilesDir(), "log_coord")
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationRequest = LocationRequest.create()
         locationRequest!!.apply {
@@ -103,7 +104,11 @@ class ContactActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     @SuppressLint("MissingPermission")
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         when (requestCode){
             REQUEST_CODE_LOCATION -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 map.isMyLocationEnabled = true
@@ -148,4 +153,6 @@ class ContactActivity : AppCompatActivity(), OnMapReadyCallback {
             finish()
         }
     }
+
+
 }

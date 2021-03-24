@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import java.io.File
 
 object ImageController {
+
     fun selectPhotoFromGalery(activity: Activity, code: Int){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -18,12 +19,6 @@ object ImageController {
         val file = File(context.filesDir, id.toString())
         val bytes = context.contentResolver.openInputStream(uri)?.readBytes()!!
         file.writeBytes(bytes)
-    }
-
-    fun createImageFile(context: Context, id: Long) {
-
-
-
     }
 
     fun getImageUri(context: Context, id: Long): Uri{
